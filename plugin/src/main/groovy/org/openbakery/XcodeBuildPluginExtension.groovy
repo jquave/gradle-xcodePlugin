@@ -299,10 +299,10 @@ class XcodeBuildPluginExtension {
 		logger.debug("finding matching destination for: {}", destination)
 
 		for (Destination device in getAllDestinations()) {
-			if (!matches(destination.platform, device.platform)) {
-				//logger.debug("{} does not match {}", device.platform, destination.platform);
+			/*if (!matches(destination.platform, device.platform)) {
+				logger.debug("{} does not match {}", device.platform, destination.platform);
 				continue
-			}
+			}*/
 			if (!matches(destination.name, device.name)) {
 				//logger.debug("{} does not match {}", device.name, destination.name);
 				continue
@@ -592,15 +592,12 @@ class XcodeBuildPluginExtension {
 
 		simulatorControl.getDevices().each { runtime, deviceList ->
 
-			if (runtime.type == Type.iOS) {
-				deviceList.each() { device ->
-					Destination destination = new Destination();
-					destination.platform = 'iOS Simulator'
-					destination.name = device.name
-					destination.os = runtime.version.toString()
-					allDestinations << destination
-				}
-			}
+      deviceList.each() { device ->
+        Destination destination = new Destination();
+        destination.name = device.name
+        destination.os = runtime.version.toString()
+        allDestinations << destination
+      }
 
 		}
 		return allDestinations;
