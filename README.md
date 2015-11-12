@@ -1,3 +1,41 @@
+## ChannelPoint Usage
+
+In build.gradle
+
+```
+buildscript {
+  repositories {
+    mavenCentral()
+    // Look at ~/.m2 for dependencies
+    mavenLocal()
+  }
+  dependencies {
+    // This is a custom built version of this to add tvOS support for us
+    classpath "org.openbakery:xcode-plugin:0.12.4-CHANNELPOINT"
+  }
+}
+
+apply plugin: 'org.openbakery.xcode-plugin'
+
+xcodebuild {
+  scheme = 'TVApp'
+  target = 'TVApp'
+  destination {
+    // Simulator
+    platform = "tvOS Simulator"
+    name = "Apple TV 1080p"
+    os = "9.0"
+  }
+  destination {
+    // Device
+    platform = "tvOS"
+    name = "Apple TV"
+    os = "9.*"
+  }
+}
+```
+
+
 gradle-xcodePlugin
 ==================
 
@@ -40,7 +78,7 @@ Here a table of the values for the migration to 0.12:
 * Java 1.6 or greater
 
 
-### Current stable version is 0.12.3
+### tvOS version is 0.12.4-CHANNELPOINT
 
 0.12.x supports Xcode 6.+ and Xcode 7.+
 
@@ -58,7 +96,7 @@ Here the minimal content you need in your build.gradle file:
 
 ```
 plugins {
-  id "org.openbakery.xcode-plugin" version "0.12.3"
+  id "org.openbakery.xcode-plugin" version "0.12.4-CHANNELPOINT"
 }
 
 xcodebuild {
