@@ -11,9 +11,13 @@ buildscript {
   }
   dependencies {
     // This is a custom built version of this to add tvOS support for us
-    //classpath "org.openbakery:xcode-plugin:0.12.4-CHANNELPOINT" // LOCAL BUILD ONLY
-    classpath('org.openbakery:xcode-plugin:0.12.4-CHANNELPOINT').ext.git = 'https://github.com/jquave/gradle-xcodePlugin.git' // REMOTE BUILD
-
+    
+    // Local dev repo (for making changes)
+    //classpath "org.openbakery:xcode-plugin:0.12.4-CHANNELPOINT"
+    
+    // Remote github repo (if you don't need changes)
+    classpath('org.openbakery:xcode-plugin:0.12.4-CHANNELPOINT').ext.git = 'https://github.com/jquave/gradle-xcodePlugin.git'
+    
   }
 }
 
